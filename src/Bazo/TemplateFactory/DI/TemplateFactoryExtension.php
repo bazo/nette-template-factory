@@ -17,7 +17,7 @@ class TemplateFactoryExtension extends \Nette\DI\CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
-		$builder->addDefinition($this->prefix('linker'))
+		$builder->addDefinition($this->prefix('factory'))
 				->setFactory('Bazo\TemplateFactory\TemplateFactory');
 	}
 

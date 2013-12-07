@@ -9,7 +9,7 @@ use Nette\Http\Response;
 use Nette\Templating\FileTemplate;
 use Nette\Localization\ITranslator;
 use Bazo\Linker\Linker;
-
+use Nette\DI\Container;
 
 
 /**
@@ -44,7 +44,7 @@ class TemplateFactory
 
 
 
-	public function __construct(\SystemContainer $container, IStorage $cacheStorage, Request $httpRequest, Response $httpResponse, User $user, Linker $linker, ITranslator $translator = NULL)
+	public function __construct(Container $container, IStorage $cacheStorage, Request $httpRequest, Response $httpResponse, User $user, Linker $linker, ITranslator $translator = NULL)
 	{
 		$this->cacheStorage = $cacheStorage;
 		$this->httpRequest = $httpRequest;
