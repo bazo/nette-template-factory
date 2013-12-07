@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazo\Linker\DI;
+namespace Bazo\TemplateFactory\DI;
 
 /**
  * @author Martin Bažík <martin@bazo.sk>
