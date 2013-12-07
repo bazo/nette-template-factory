@@ -1,0 +1,22 @@
+{
+	"name": "bazo/nette-template-factory",
+	"type": "nette-addon",
+	"description": "Template factory",
+	"keywords": ["nette", "links"],
+	"homepage": "https://github.com/bazo/nette-template-factory",
+	"authors": [
+		{
+			"name": "Martin Bažík",
+			"email": "martin@bazo.sk",
+			"homepage": "http://bazo.sk"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"nette/nette": "@dev",
+		"bazo/linker": "@dev"
+	},
+	"autoload": {
+		"psr-0": {"Bazo": "src/"}
+	}
+}
