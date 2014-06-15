@@ -11,9 +11,10 @@
 			"homepage": "http://bazo.sk"
 		}
 	],
+	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4.0",
-		"nette/nette": "@dev",
+		"latte/latte": "@dev",
 		"bazo/nette-linker": "@dev"
 	},
 	"autoload": {

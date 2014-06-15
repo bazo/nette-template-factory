@@ -1,0 +1,21 @@
+php:
+	date.timezone: Europe/Bratislava
+	# session.save_path: "%tempDir%/sessions"
+	# zlib.output_compression: yes
+
+nette:
+	session:
+		autoStart: smart
+		expiration: '+365 days'
+
+	application:
+		errorPresenter: Error
+		mapping:
+			*: *Module\*Presenter
+
+extensions:
+	- Bazo\TemplateFactory\DI\TemplateFactoryExtension
+	- Bazo\Linker\DI\LinkerExtension
+
+services:
+	
