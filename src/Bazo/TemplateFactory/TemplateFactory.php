@@ -2,6 +2,7 @@
 
 namespace Bazo\TemplateFactory;
 
+
 use Bazo\Linker\Linker;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\Bridges\ApplicationLatte\Template;
@@ -16,8 +17,6 @@ use Nette\Localization\ITranslator;
 use Nette\Security\User;
 use SystemContainer;
 use Traversable;
-
-
 
 /**
  * @author Martin Bažík <martin@bazo.sk>
@@ -49,25 +48,23 @@ class TemplateFactory
 	/** @var Linker */
 	private $linker;
 
-
-	public function __construct(Container $container, IStorage $cacheStorage, /* ILatteFactory $latteFactory, */ Request $httpRequest, Response $httpResponse, User $user, Linker $linker, ITranslator $translator = NULL)
+	public function __construct(Container $container, IStorage $cacheStorage, ILatteFactory $latteFactory, Request $httpRequest, Response $httpResponse, User $user, Linker $linker, ITranslator $translator = NULL)
 	{
-		$this->container = $container;
-		$this->cacheStorage = $cacheStorage;
-		//$this->latteFactory = $latteFactory;
-		$this->latteFactory = $container->createServiceNette__latteFactory();
-		$this->httpRequest = $httpRequest;
-		$this->httpResponse = $httpResponse;
-		$this->user = $user;
-		$this->linker = $linker;
-		$this->translator = $translator;
+		$this->container	 = $container;
+		$this->cacheStorage	 = $cacheStorage;
+		$this->latteFactory	 = $latteFactory;
+		$this->httpRequest	 = $httpRequest;
+		$this->httpResponse	 = $httpResponse;
+		$this->user			 = $user;
+		$this->linker		 = $linker;
+		$this->translator	 = $translator;
 	}
 
 
 	public function createTemplate($class = NULL)
 	{
-		$latte = $this->latteFactory->create();
-		$template = $class ? new $class($latte) : new Template($latte);
+		$latte		 = $this->latteFactory->create();
+		$template	 = $class ? new $class($latte) : new Template($latte);
 
 		$template->getLatte()->addFilter(NULL, 'Nette\\Templating\\Helpers::loader');
 
@@ -87,11 +84,11 @@ class TemplateFactory
 			$latte->addFilter($name, 'Nette\Utils\Strings::' . $name);
 		}
 
-		$template->user = $this->user;
+		$template->user				 = $this->user;
 		$template->netteHttpResponse = $this->httpResponse;
 		$template->netteCacheStorage = $this->httpRequest;
-		$template->baseUri = $template->baseUrl = rtrim($this->httpRequest->getUrl()->getBaseUrl(), '/');
-		$template->basePath = preg_replace('#https?://[^/]+#A', '', $template->baseUrl);
+		$template->baseUri			 = $template->baseUrl			 = rtrim($this->httpRequest->getUrl()->getBaseUrl(), '/');
+		$template->basePath			 = preg_replace('#https?://[^/]+#A', '', $template->baseUrl);
 
 		if (!isset($template->flashes) || !is_array($template->flashes)) {
 			$template->flashes = array();
